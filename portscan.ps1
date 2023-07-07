@@ -1,7 +1,47 @@
-"""
-@AUTHOR: Christian Friedrich
-@CONTACT: christianfriedrich06@gmail.com
-"""
+<#
+.SYNOPSIS
+    TCP / UDP Port Scanner in Powershell.
+.DESCRIPTION
+    The Port Scanner Scans for Open TCP AND/OR UDP Ports in a given range or with a given file with ports in each line.
+.PARAMETER Host
+    Specifies the host to connect to.
+.Parameter tcp
+    Specifies the Protocol that is tested, a value is not required.
+.Parameter udp
+    Specifies the Protocol that is tested, a value is not required.    
+.Parameter filepath
+    Specifies the Filepath to the ports that need to be tested. (Seperated by line).
+.Parameter start
+    Specifies the startport to begin with.
+.Parameter end
+    Specifies the implicit endport to stop.
+.Parameter timeout
+    Specifies the Timeout in Miliseconds, if the Server is not responding.
+.OUTPUTS
+    returns a report file in the format: REPORT-[host-ip]-[datetime].txt in same directory, with all attempts and results.
+    prints every attempt  on console with port if verbose is actived.
+.EXAMPLE
+    the host ip is entered seperately.
+
+    Example 1: .\portscan.ps1 -tcp -udp -filepath ".\ports.txt"
+    Tests the given TCP/UDP ports in ports.txt File if they are open or closed.
+
+    Example 2: .\portscan.ps1 -tcp -udp -filepath ".\ports.txt" -Verbose
+    Tests the given TCP/UDP ports in ports.txt File if they are open or closed. Attempts are printed on Console.
+
+    Example 3: .\portscan.ps1 -tcp -udp -filepath ".\ports.txt" -timeout 1500 -Verbose
+    Tests the given TCP/UDP ports in ports.txt File if they are open or closed. Timeout after 1500 msec. Attempts are printed on Console.
+
+    Example 4: .\portscan.ps1 -tcp -udp -start 80 -end 85
+    Tests the given TCP/UDP ports in range between 80 - 85 (80,81,82,83,84,85) if they are open or closed.
+
+    Example 4: .\portscan.ps1 -tcp -udp -start 80 -end 85 -verbose
+    Tests the given TCP/UDP ports in range between 80 - 85 (80,81,82,83,84,85) if they are open or closed. Attempts are printed on Console.
+
+    Example 5: .\portscan.ps1 -tcp -start 80 -end 85 -timeout 1500 -verbose
+    Tests the given TCP ports in range between 80 - 85 (80,81,82,83,84,85) if they are open or closed. Timeout after 1500 msec. Attempts are printed on Console.
+#>
+
 
 $script:COUNT = 0;
 $script:OK = 0;
@@ -172,7 +212,7 @@ function testOpenRange {
 function createReportFooter {
     $result = "---------------------------------------------------------------------------";
     $result += Get-Date -Format "`r`FINISH DATE: dd.MM.yyyy HH:mm:ss";
-    $result += "`r`FINISH DATE: AMOUNT: ${script:COUNT} | OK: ${script:OK} ";
+    $result += "`r`FINISH DATE: ATTEMPS: ${script:COUNT} | OK: ${script:OK} ";
     $result += "| CLOSED: ${script:CLOSED} | TIMEOUTS: ${script:TIMEOUTS} ";
     $result += "| ERRORS: ${script:ERRORS}"
     return $result;

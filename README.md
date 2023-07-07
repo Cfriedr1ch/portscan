@@ -5,13 +5,7 @@ TCP / UDP Portscanner in Powershell
 The Port Scanner Scans for Open TCP AND/OR UDP Ports in a given range or with a given file with ports in each line.
 
 ## Input-File
-seperate the Ports with newlines
-e.g ports.txt:
-
-80
-21
-22
-9999
+seperate the Ports with newline, See provided ports.txt file.
 
 ## Usage
 Use one of the following commands in Powershell Command line

@@ -3,7 +3,7 @@ TCP / UDP Portscanner in Powershell
 
 ## Usage
     
-    ```Powershell
+    ```powershell
     # Tests the given TCP/UDP ports in ports.txt File if they are open or closed.
     .\portscan.ps1 -tcp -udp -filepath ".\ports.txt"
 

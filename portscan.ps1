@@ -1,3 +1,8 @@
+"""
+@AUTHOR: Christian Friedrich
+@CONTACT: christianfriedrich06@gmail.com
+"""
+
 $script:COUNT = 0;
 $script:OK = 0;
 $script:CLOSED = 0;

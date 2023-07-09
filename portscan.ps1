@@ -211,8 +211,9 @@ function testOpenRange {
 
 function createReportFooter {
     $result = "---------------------------------------------------------------------------";
-    $result += Get-Date -Format "`r`FINISH DATE: dd.MM.yyyy HH:mm:ss";
-    $result += "`r`FINISH DATE: ATTEMPS: ${script:COUNT} | OK: ${script:OK} ";
+    $result += "`r`FINISH DATE: ";
+    $result += Get-Date -Format "dd.MM.yyyy HH:mm:ss";
+    $result += "`r`ATTEMPS: ${script:COUNT} | OK: ${script:OK} ";
     $result += "| CLOSED: ${script:CLOSED} | TIMEOUTS: ${script:TIMEOUTS} ";
     $result += "| ERRORS: ${script:ERRORS}"
     return $result;
